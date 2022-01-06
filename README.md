@@ -29,10 +29,10 @@ All my apes gone.
 
 ### Library shell
 
-The one-liner `nix develop ~src/typelevel-nix#library` gets us a full environment:
+The one-liner `nix develop github:rossabaker/typelevel-nix#library` gets us a full environment:
 
 ```console
-$ nix develop ~/src/typelevel-nix#library
+$ nix develop github:rossabaker/typelevel-nix#library
 $ java -version
 openjdk version "1.8.0_292"
 OpenJDK Runtime Environment (Zulu 8.54.0.21-CA-macosx) (build 1.8.0_292-b10)
@@ -47,10 +47,10 @@ $ exit
 
 ### Application shell
 
-Alternatively, `nix develop ~src/typelevel-nix#library` gives us the same, with a more contemporary JDK:
+Alternatively, `nix develop github:rossabaker/typelevel-nix#application` gives us the same, with a more contemporary JDK:
 
 ```console
-$ nix develop ~/src/typelevel-nix#library
+$ nix develop github:rossabaker/typelevel-nix#application
 $ java -version
 openjdk version "17.0.1" 2021-10-19 LTS
 OpenJDK Runtime Environment Zulu17.30+15-CA (build 17.0.1+12-LTS)
