@@ -46,10 +46,6 @@ $ nix develop github:rossabaker/typelevel-nix#library
   Java - 8.0.292
   Node - 16.13.1
 
-$ java -version
-openjdk version "1.8.0_292"
-OpenJDK Runtime Environment (Zulu 8.54.0.21-CA-macosx) (build 1.8.0_292-b10)
-OpenJDK 64-Bit Server VM (Zulu 8.54.0.21-CA-macosx) (build 25.292-b10, mixed mode)
 [typelevel-lib-shell]$ sbt -version
 sbt version in this project: 1.6.1
 sbt script version: 1.6.1
