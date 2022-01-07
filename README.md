@@ -71,7 +71,22 @@ Not yet, but flake.lock makes it reproducible.
 
 ###	Can I use it with trusty old `nix-shell`?
 
-Probably, but I haven't put time into how.  I'm leaning into flakes.
+Absolutely! The `shell.nix` provides a flakes-compatible shell that works with `nix-shell`. It selects the `application` shell by default, but you can be specific about it. E.g.
+
+```
+$ nix-shell --argstr shell library
+```
+
+To use it remotely, copy the content of the `shell.nix` in your project and point `src` to this repository instead. E.g.
+
+```nix
+{
+  src = fetchTarball {
+    url = "https://github.com/rossabaker/typelevel-nix/archive/main.tar.gz";
+    sha256 = "0000000000000000000000000000000000000000000000000000"; # replace hash
+  };
+};
+```
 
 ### What if my library or app requires Java 11?
 
