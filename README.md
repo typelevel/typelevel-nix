@@ -46,7 +46,7 @@ $ nix develop github:rossabaker/typelevel-nix#library
   Java - 8.0.292
   Node - 16.13.1
 
-[typelevel-lib-shell]$ sbt -version
+$ sbt -version
 sbt version in this project: 1.6.1
 sbt script version: 1.6.1
 $ exit
@@ -71,7 +71,7 @@ $ nix develop github:rossabaker/typelevel-nix#application
   Java - 17.0.1
   Node - 16.13.1
 
-[typelevel-app-shell]$ sbt -version
+$ sbt -version
 sbt version in this project: 1.6.1
 sbt script version: 1.6.1
 $ exit
