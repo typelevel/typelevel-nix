@@ -33,15 +33,26 @@ The one-liner `nix develop github:rossabaker/typelevel-nix#library` gets us a fu
 
 ```console
 $ nix develop github:rossabaker/typelevel-nix#library
+🔨 Welcome to typelevel-lib-shell
+
+[general commands]
+
+  menu      - prints this menu
+  sbt       - A build tool for Scala, Java and more
+  scala-cli - Command-line tool to interact with the Scala language
+
+[versions]
+
+  Java - 8.0.292
+  Node - 16.13.1
+
 $ java -version
 openjdk version "1.8.0_292"
 OpenJDK Runtime Environment (Zulu 8.54.0.21-CA-macosx) (build 1.8.0_292-b10)
 OpenJDK 64-Bit Server VM (Zulu 8.54.0.21-CA-macosx) (build 25.292-b10, mixed mode)
-$ sbt -version
+[typelevel-lib-shell]$ sbt -version
 sbt version in this project: 1.6.1
 sbt script version: 1.6.1
-$ node --version
-v16.13.1
 $ exit
 ```
 
@@ -51,15 +62,22 @@ Alternatively, `nix develop github:rossabaker/typelevel-nix#application` gives u
 
 ```console
 $ nix develop github:rossabaker/typelevel-nix#application
-$ java -version
-openjdk version "17.0.1" 2021-10-19 LTS
-OpenJDK Runtime Environment Zulu17.30+15-CA (build 17.0.1+12-LTS)
-OpenJDK 64-Bit Server VM Zulu17.30+15-CA (build 17.0.1+12-LTS, mixed mode, sharing)
-$ sbt -version
+🔨 Welcome to typelevel-app-shell
+
+[general commands]
+
+  menu      - prints this menu
+  sbt       - A build tool for Scala, Java and more
+  scala-cli - Command-line tool to interact with the Scala language
+
+[versions]
+
+  Java - 17.0.1
+  Node - 16.13.1
+
+[typelevel-app-shell]$ sbt -version
 sbt version in this project: 1.6.1
 sbt script version: 1.6.1
-$ node --version
-v16.13.1
 $ exit
 ```
 
