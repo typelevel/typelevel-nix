@@ -77,6 +77,40 @@ sbt script version: 1.6.1
 $ exit
 ```
 
+### Embed in your project
+
+This is particularly useful as a default `devShell`:
+
+```nix
+{
+  inputs = {
+    typelevel-nix.url = "github:rossabaker/typelevel-nix";
+    nixpkgs.follows = "typelevel-nix/nixpkgs";
+    flake-utils.follows = "typelevel-nix/flake-utils";
+  };
+
+  outputs = { self, nixpkgs, flake-utils, typelevel-nix }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays = typelevel-nix.overlays;
+        };
+      in
+      {
+        devShell = pkgs.typelevel-shell.mkShell {
+          name = "case-insensitive-shell";
+          typelevel-shell.jdk.package = pkgs.jdk8;
+        };
+      }
+    );
+}
+```
+
+`typelevel-shell.mkShell` supports the following options beyond `devshell`:
+
+* `typelevel-shell.jdk.package`: the JDK package to use for `sbt` and the `$JAVA_HOME` environment.  Defaults to `pkgs.jdk17`.  If you're writing a library, you probably want `pkgs.jdk8`.
+
 ## Infrequently asked questions
 
 ### Is this stable?
@@ -101,10 +135,6 @@ To use it remotely, copy the content of the `shell.nix` in your project and poin
   };
 };
 ```
-
-### What if my library or app requires Java 11?
-
-Uh, we'll expose a library function or something soon.
 
 ### Can I embed this in a project to share with my colleagues and collaborators?
 

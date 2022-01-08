@@ -13,14 +13,12 @@
 
   outputs = { self, nixpkgs, flake-utils, devshell, ... }:
     let
+      typelevel-shell = ./modules/typelevel-shell.nix;
       forSystem = system:
         let
           pkgs = import nixpkgs {
             inherit system;
-            overlays = [
-              self.overlay
-              devshell.overlay
-            ];
+            overlays = self.overlays;
           };
         in
         {
@@ -37,6 +35,9 @@
         };
     in
     {
-      overlay = import ./overlay.nix;
+      overlays = [
+        devshell.overlay
+        (import ./overlay.nix)
+      ];
     } // flake-utils.lib.eachDefaultSystem forSystem;
 }
