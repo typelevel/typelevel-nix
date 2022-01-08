@@ -1,5 +1,5 @@
 {
-  description = "Provides a basic development environment for Typelevel projects";
+  description = "Virtual environments for Scala projects";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
@@ -17,62 +17,26 @@
         let
           pkgs = import nixpkgs {
             inherit system;
-            overlays = [ devshell.overlay ];
+            overlays = [
+              self.overlay
+              devshell.overlay
+            ];
           };
-
-          mkTypelevelShell =
-            { jdk
-            , name ? "typelevel-dev-shell"
-            }: pkgs.devshell.mkShell {
-              inherit name;
-
-              commands = [
-                { package = pkgs.scala-cli; }
-                { package = pkgs.sbt.override { jre = jdk; }; }
-              ];
-
-              motd =
-                let
-                  esc = "";
-                  orange = "${esc}[38;5;202m";
-                  reset = "${esc}[0m";
-                  bold = "${esc}[1m";
-                in
-                ''
-                  ${orange}🔨 Welcome to ${name}${reset}
-                  $(type -p menu &>/dev/null && menu)
-
-                  ${bold}[versions]${reset}
-
-                    Java - ${jdk.version}
-                    Node - ${pkgs.nodejs.version}
-                '';
-
-              packages = [
-                pkgs.nodejs
-                pkgs.yarn
-              ];
-
-              env = [
-                {
-                  name = "JAVA_HOME";
-                  value = "${jdk}";
-                }
-              ];
-            };
         in
         {
           devShells = {
-            library = mkTypelevelShell {
+            library = pkgs.typelevel-shell.mkShell {
               name = "typelevel-lib-shell";
-              jdk = pkgs.jdk8_headless;
+              typelevel-shell.jdk.package = pkgs.jdk8_headless;
             };
-            application = mkTypelevelShell {
+            application = pkgs.typelevel-shell.mkShell {
               name = "typelevel-app-shell";
-              jdk = pkgs.jdk17_headless;
+              typelevel-shell.jdk.package = pkgs.jdk17_headless;
             };
           };
         };
     in
-    flake-utils.lib.eachDefaultSystem forSystem;
+    {
+      overlay = import ./overlay.nix;
+    } // flake-utils.lib.eachDefaultSystem forSystem;
 }
