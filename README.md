@@ -79,7 +79,7 @@ $ exit
 
 ### Embed in your project
 
-The `typelevel-shell` module can be imported into your `devshell.mkShell` configuration:
+The `typelevelShell` module can be imported into your `devshell.mkShell` configuration:
 
 ```nix
 {
@@ -99,9 +99,9 @@ The `typelevel-shell` module can be imported into your `devshell.mkShell` config
       in
       {
         devShell = pkgs.devshell.mkShell {
-          imports = [ typelevel-nix.typelevel-shell ];
+          imports = [ typelevel-nix.typelevelShell ];
           name = "my-project-shell";
-          typelevel-shell = {
+          typelevelShell = {
 		    jdk.package = pkgs.jdk8;
 			sbtMicrosites = {
 			  enable = true;
@@ -114,11 +114,11 @@ The `typelevel-shell` module can be imported into your `devshell.mkShell` config
 }
 ```
 
-Extra configuration in `typelevel-shell`:
+Extra configuration in `typelevelShell`:
 
-* `typelevel-shell.jdk.package`: the JDK package to use for `sbt` and the `$JAVA_HOME` environment.  Defaults to `pkgs.jdk17`.  If you're writing a library, you probably want `pkgs.jdk8`.
-* `typelevel-shell.sbtMicrosites.enable`: enables Jekyll support for sbt-microsites.  Defaults to `false`.
-* `typelevel-shell.sbtMicrosites.siteDir`: directory with your `Gemfile`, `Gemfile.lock`, and `gemset.nix`.  Run [bundix] to create a gemset.nix, and every time you upgrade Jekyll.
+* `typelevelShell.jdk.package`: the JDK package to use for `sbt` and the `$JAVA_HOME` environment.  Defaults to `pkgs.jdk17`.  If you're writing a library, you probably want `pkgs.jdk8`.
+* `typelevelShell.sbtMicrosites.enable`: enables Jekyll support for sbt-microsites.  Defaults to `false`.
+* `typelevelShell.sbtMicrosites.siteDir`: directory with your `Gemfile`, `Gemfile.lock`, and `gemset.nix`.  Run [bundix] to create a gemset.nix, and every time you upgrade Jekyll.
 
 ## Infrequently asked questions
 

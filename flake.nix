@@ -13,7 +13,7 @@
 
   outputs = { self, nixpkgs, flake-utils, devshell, ... }:
     let
-      typelevel-shell = ./modules/typelevel-shell.nix;
+      typelevelShell = ./modules/typelevelShell.nix;
       forSystem = system:
         let
           pkgs = import nixpkgs {
@@ -24,20 +24,20 @@
         {
           devShells = {
             library = pkgs.devshell.mkShell {
-              imports = [ typelevel-shell ];
+              imports = [ typelevelShell ];
               name = "typelevel-lib-shell";
-              typelevel-shell.jdk.package = pkgs.jdk8_headless;
+              typelevelShell.jdk.package = pkgs.jdk8_headless;
             };
             application = pkgs.devshell.mkShell {
-              imports = [ typelevel-shell ];
+              imports = [ typelevelShell ];
               name = "typelevel-app-shell";
-              typelevel-shell.jdk.package = pkgs.jdk17_headless;
+              typelevelShell.jdk.package = pkgs.jdk17_headless;
             };
           };
         };
     in
     {
       inherit (devshell) overlay;
-      inherit typelevel-shell;
+      inherit typelevelShell;
     } // flake-utils.lib.eachDefaultSystem forSystem;
 }

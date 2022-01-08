@@ -2,10 +2,10 @@
 
 with lib;
 let
-  cfg = config.typelevel-shell;
+  cfg = config.typelevelShell;
 in
 {
-  options.typelevel-shell = {
+  options.typelevelShell = {
     jdk = {
       package = mkOption {
         type = types.package;
