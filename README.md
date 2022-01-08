@@ -101,7 +101,13 @@ The `typelevel-shell` module can be imported into your `devshell.mkShell` config
         devShell = pkgs.devshell.mkShell {
           imports = [ typelevel-nix.typelevel-shell ];
           name = "my-project-shell";
-          typelevel-shell.jdk.package = pkgs.jdk8;
+          typelevel-shell = {
+		    jdk.package = pkgs.jdk8;
+			sbtMicrosites = {
+			  enable = true;
+			  siteDir = ./site;
+		    };
+          };
         };
       }
     );
@@ -111,6 +117,8 @@ The `typelevel-shell` module can be imported into your `devshell.mkShell` config
 Extra configuration in `typelevel-shell`:
 
 * `typelevel-shell.jdk.package`: the JDK package to use for `sbt` and the `$JAVA_HOME` environment.  Defaults to `pkgs.jdk17`.  If you're writing a library, you probably want `pkgs.jdk8`.
+* `typelevel-shell.sbtMicrosites.enable`: enables Jekyll support for sbt-microsites.  Defaults to `false`.
+* `typelevel-shell.sbtMicrosites.siteDir`: directory with your `Gemfile`, `Gemfile.lock`, and `gemset.nix`.  Run [bundix] to create a gemset.nix, and every time you upgrade Jekyll.
 
 ## Infrequently asked questions
 
@@ -141,10 +149,6 @@ To use it remotely, copy the content of the `shell.nix` in your project and poin
 
 Yes.  You should be able to put a `flake.nix` so you can share with your colleagues or open source collaborators, and even provide a [direnv] so your `$SHELL` and `$EDITOR` do the right thing.  Examples forthcoming.
 
-### Does it handle site generators like Jekyll?
-
-Not yet, but it would be great to make that easier.  I've grown fond of [Laika], which doesn't require any of this.
-
 ### Is this a Typelevel project?
 
 It's built with Typelevel projects in mind, but this is an individual experiment right now.  If received well, I'll transfer it.
@@ -159,3 +163,4 @@ It's built with Typelevel projects in mind, but this is an individual experiment
 [Nix command]: https://nixos.wiki/wiki/Nix_command
 [direnv]: https://direnv.net/
 [Laika]: https://planet42.github.io/Laika/
+[bundix]: https://github.com/nix-community/bundix
