@@ -18,16 +18,18 @@
         let
           pkgs = import nixpkgs {
             inherit system;
-            overlays = self.overlays;
+            overlays = [ self.overlay ];
           };
         in
         {
           devShells = {
-            library = pkgs.typelevel-shell.mkShell {
+            library = pkgs.devshell.mkShell {
+              imports = [ typelevel-shell ];
               name = "typelevel-lib-shell";
               typelevel-shell.jdk.package = pkgs.jdk8_headless;
             };
-            application = pkgs.typelevel-shell.mkShell {
+            application = pkgs.devshell.mkShell {
+              imports = [ typelevel-shell ];
               name = "typelevel-app-shell";
               typelevel-shell.jdk.package = pkgs.jdk17_headless;
             };
@@ -35,9 +37,7 @@
         };
     in
     {
-      overlays = [
-        devshell.overlay
-        (import ./overlay.nix)
-      ];
+      inherit (devshell) overlay;
+      inherit typelevel-shell;
     } // flake-utils.lib.eachDefaultSystem forSystem;
 }

@@ -79,7 +79,7 @@ $ exit
 
 ### Embed in your project
 
-This is particularly useful as a default `devShell`:
+The `typelevel-shell` module can be imported into your `devshell.mkShell` configuration:
 
 ```nix
 {
@@ -94,12 +94,13 @@ This is particularly useful as a default `devShell`:
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = typelevel-nix.overlays;
+          overlays = [ typelevel-nix.overlay ];
         };
       in
       {
-        devShell = pkgs.typelevel-shell.mkShell {
-          name = "case-insensitive-shell";
+        devShell = pkgs.devshell.mkShell {
+          imports = [ typelevel-nix.typelevel-shell ];
+          name = "my-project-shell";
           typelevel-shell.jdk.package = pkgs.jdk8;
         };
       }
@@ -107,7 +108,7 @@ This is particularly useful as a default `devShell`:
 }
 ```
 
-`typelevel-shell.mkShell` supports the following options beyond `devshell`:
+Extra configuration in `typelevel-shell`:
 
 * `typelevel-shell.jdk.package`: the JDK package to use for `sbt` and the `$JAVA_HOME` environment.  Defaults to `pkgs.jdk17`.  If you're writing a library, you probably want `pkgs.jdk8`.
 
