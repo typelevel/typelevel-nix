@@ -26,6 +26,12 @@ in
     let
       main = {
         commands = [
+          {
+            package = pkgs.metals.override {
+              jdk = cfg.jdk.package;
+              jre = cfg.jdk.package;
+            };
+          }
           { package = pkgs.scala-cli; }
           { package = pkgs.sbt.override { jre = cfg.jdk.package; }; }
         ];
