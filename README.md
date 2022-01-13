@@ -153,6 +153,14 @@ Yes.  You should be able to put a `flake.nix` so you can share with your colleag
 
 It's built with Typelevel projects in mind, but this is an individual experiment right now.  If received well, I'll transfer it.
 
+### Can I read `.java-version` from jEnv to get an appropriate JDK?
+
+```nix
+typelevelShell = {
+  jdk.package = builtins.getAttr "jdk${pkgs.lib.fileContents ./.java-version}" pkgs;
+}
+```
+
 [sbt]: https://www.scala-sbt.org/
 [Scala CLR]: https://www.scala-lang.org/old/sites/default/files/pdfs/PreviewScalaNET.pdf
 [Scala.js]: https://www.scala-js.org/
