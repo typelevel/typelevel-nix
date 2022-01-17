@@ -1,0 +1,37 @@
+name: update-flake
+on:
+  workflow_dispatch: # allows manual triggering
+  schedule:
+    - cron: '45 3 * * 1' # runs weekly on Monday at 03:45
+
+jobs:
+  lockfile:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+      - name: Install Nix
+        uses: cachix/install-nix-action@v16
+        with:
+          extra_nix_config: |
+            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+      - name: Update inputs
+        env:
+          GIT_AUTHOR_NAME: github-actions[bot]
+          GIT_AUTHOR_EMAIL: <github-actions[bot]@users.noreply.github.com>
+          GIT_COMMITTER_NAME: github-actions[bot]
+          GIT_COMMITTER_EMAIL: <github-actions[bot]@users.noreply.github.com>
+        run: |
+          nix flake update --commit-lock-file
+      - uses: tibdex/github-app-token@v1
+        id: generate-token
+        with:
+          app_id: ${{ secrets.FLAKE_STEWARD_APP_ID }}
+          private_key: ${{ secrets.FLAKE_STEWARD_KEY }}
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v3
+        with:
+          title: "Update flake inputs"
+          branch: "automation/update-flake-inputs"
+          delete-branch: true
+          token: ${{ steps.generate-token.outputs.token }}
