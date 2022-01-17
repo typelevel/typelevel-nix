@@ -161,6 +161,10 @@ typelevelShell = {
 }
 ```
 
+### Is there a binary cache?
+
+Yes.  We are publishing to [rossabaker.cachix.org] for Linux and MacOS, though the heavy things are mostly in nixpkgs.
+
 [sbt]: https://www.scala-sbt.org/
 [Scala CLR]: https://www.scala-lang.org/old/sites/default/files/pdfs/PreviewScalaNET.pdf
 [Scala.js]: https://www.scala-js.org/
@@ -172,3 +176,4 @@ typelevelShell = {
 [direnv]: https://direnv.net/
 [Laika]: https://planet42.github.io/Laika/
 [bundix]: https://github.com/nix-community/bundix
+[rossabaker.cachix.org]: https://app.cachix.org/cache/rossabaker#pull
