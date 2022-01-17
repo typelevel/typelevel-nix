@@ -163,7 +163,7 @@ typelevelShell = {
 
 ### Is there a binary cache?
 
-Yes.  We are publishing to [rossabaker.cachix.org][cachix] for Linux and MacOS, though the heavy things are mostly in nixpkgs.
+Yes.  We are publishing to [rossabaker.cachix.org] for Linux and MacOS, though the heavy things are mostly in nixpkgs.
 
 [sbt]: https://www.scala-sbt.org/
 [Scala CLR]: https://www.scala-lang.org/old/sites/default/files/pdfs/PreviewScalaNET.pdf
