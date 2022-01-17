@@ -54,6 +54,7 @@ in
           '';
 
         devshell.packages = [
+          cfg.jdk.package
           pkgs.nodejs
           pkgs.yarn
         ];
