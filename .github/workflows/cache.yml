@@ -23,9 +23,8 @@ jobs:
       - name: "Install Cachix️"
         uses: cachix/cachix-action@v10
         with:
-          name: rossabaker
+          name: typelevel
           authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-          signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
 
       - name: "Build dev shells"
         run: for shell in library application; do nix develop .#${shell} -c true; done
