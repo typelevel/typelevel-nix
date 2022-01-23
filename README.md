@@ -29,10 +29,10 @@ All my apes gone.
 
 ### Library shell
 
-The one-liner `nix develop github:rossabaker/typelevel-nix#library` gets us a full environment:
+The one-liner `nix develop github:typelevel/typelevel-nix#library` gets us a full environment:
 
 ```console
-$ nix develop github:rossabaker/typelevel-nix#library
+$ nix develop github:typelevel/typelevel-nix#library
 🔨 Welcome to typelevel-lib-shell
 
 [general commands]
@@ -54,10 +54,10 @@ $ exit
 
 ### Application shell
 
-Alternatively, `nix develop github:rossabaker/typelevel-nix#application` gives us the same, with a more contemporary JDK:
+Alternatively, `nix develop github:typelevel/typelevel-nix#application` gives us the same, with a more contemporary JDK:
 
 ```console
-$ nix develop github:rossabaker/typelevel-nix#application
+$ nix develop github:typelevel/typelevel-nix#application
 🔨 Welcome to typelevel-app-shell
 
 [general commands]
@@ -84,7 +84,7 @@ The `typelevelShell` module can be imported into your `devshell.mkShell` configu
 ```nix
 {
   inputs = {
-    typelevel-nix.url = "github:rossabaker/typelevel-nix";
+    typelevel-nix.url = "github:typelevel/typelevel-nix";
     nixpkgs.follows = "typelevel-nix/nixpkgs";
     flake-utils.follows = "typelevel-nix/flake-utils";
   };
@@ -139,7 +139,7 @@ To use it remotely, copy the content of the `shell.nix` in your project and poin
 ```nix
 {
   src = fetchTarball {
-    url = "https://github.com/rossabaker/typelevel-nix/archive/main.tar.gz";
+    url = "https://github.com/typelevel/typelevel-nix/archive/main.tar.gz";
     sha256 = "0000000000000000000000000000000000000000000000000000"; # replace hash
   };
 };
