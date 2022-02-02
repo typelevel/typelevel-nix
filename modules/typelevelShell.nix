@@ -13,6 +13,8 @@ in
       };
     };
 
+    nodejs.enable = mkEnableOption "Provide nodejs and yarn";
+
     sbtMicrosites = {
       enable = mkEnableOption "Add support for sbt-microsites";
       siteDir = mkOption {
@@ -50,11 +52,11 @@ in
             ${bold}[versions]${reset}
 
               Java - ${cfg.jdk.package.version}
-              Node - ${pkgs.nodejs.version}
-          '';
+          '' + optionalString cfg.nodejs.enable "  Node - ${pkgs.nodejs.version}\n";
 
         devshell.packages = [
           cfg.jdk.package
+        ] ++ optionals cfg.nodejs.enable [
           pkgs.nodejs
           pkgs.yarn
         ];
