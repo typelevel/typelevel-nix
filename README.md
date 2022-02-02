@@ -44,7 +44,6 @@ $ nix develop github:typelevel/typelevel-nix#library
 [versions]
 
   Java - 8.0.292
-  Node - 16.13.1
 
 $ sbt -version
 sbt version in this project: 1.6.1
@@ -69,7 +68,6 @@ $ nix develop github:typelevel/typelevel-nix#application
 [versions]
 
   Java - 17.0.1
-  Node - 16.13.1
 
 $ sbt -version
 sbt version in this project: 1.6.1
@@ -117,6 +115,7 @@ The `typelevelShell` module can be imported into your `devshell.mkShell` configu
 Extra configuration in `typelevelShell`:
 
 * `typelevelShell.jdk.package`: the JDK package to use for `sbt` and the `$JAVA_HOME` environment.  Defaults to `pkgs.jdk17`.  If you're writing a library, you probably want `pkgs.jdk8`.
+* `nodejs.enable`: provide NodeJS and Yarn.
 * `typelevelShell.sbtMicrosites.enable`: enables Jekyll support for sbt-microsites.  Defaults to `false`.
 * `typelevelShell.sbtMicrosites.siteDir`: directory with your `Gemfile`, `Gemfile.lock`, and `gemset.nix`.  Run [bundix] to create a gemset.nix, and every time you upgrade Jekyll.
 
