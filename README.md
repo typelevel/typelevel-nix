@@ -44,6 +44,7 @@ $ nix develop github:typelevel/typelevel-nix#library
 [versions]
 
   Java - 8.0.292
+  Node - 16.13.1
 
 $ sbt -version
 sbt version in this project: 1.6.1
