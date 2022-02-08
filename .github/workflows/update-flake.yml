@@ -25,10 +25,7 @@ jobs:
         with:
           app_id: ${{ secrets.FLAKE_STEWARD_APP_ID }}
           private_key: ${{ secrets.FLAKE_STEWARD_KEY }}
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v3
+      - name: Update flake.lock
+        uses: DeterminateSystems/update-flake-lock@v8
         with:
-          title: "Update flake inputs"
-          branch: "automation/update-flake-inputs"
-          delete-branch: true
           token: ${{ steps.generate-token.outputs.token }}
