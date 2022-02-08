@@ -149,10 +149,6 @@ To use it remotely, copy the content of the `shell.nix` in your project and poin
 
 Yes.  You should be able to put a `flake.nix` so you can share with your colleagues or open source collaborators, and even provide a [direnv] so your `$SHELL` and `$EDITOR` do the right thing.  Examples forthcoming.
 
-### Is this a Typelevel project?
-
-It's built with Typelevel projects in mind, but this is an individual experiment right now.  If received well, I'll transfer it.
-
 ### Can I read `.java-version` from jEnv to get an appropriate JDK?
 
 ```nix
