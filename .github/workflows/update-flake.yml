@@ -15,11 +15,6 @@ jobs:
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
-      - name: Update inputs
-        run: |
-          git config user.email "97855512+rossabaker-flake-steward[bot]@users.noreply.github.com"
-          git config user.name "rossabaker-flake-steward[bot]"
-          nix flake update --commit-lock-file
       - uses: tibdex/github-app-token@v1
         id: generate-token
         with:
