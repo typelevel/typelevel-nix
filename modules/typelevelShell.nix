@@ -30,7 +30,6 @@ in
         commands = [
           {
             package = pkgs.metals.override {
-              jdk = cfg.jdk.package;
               jre = cfg.jdk.package;
             };
           }
