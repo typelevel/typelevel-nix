@@ -18,7 +18,10 @@
         let
           pkgs = import nixpkgs {
             inherit system;
-            overlays = [ self.overlay ];
+            overlays = [
+              self.overlay
+              (import ./overlay.nix)
+            ];
           };
         in
         {
