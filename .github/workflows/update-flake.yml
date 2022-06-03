@@ -19,7 +19,7 @@ jobs:
         id: generate-token
         with:
           app_id: ${{ secrets.STEWARD_APP_ID }}
-          private_key: ${{ secrets.STEWARD_KEY }}
+          private_key: ${{ secrets.STEWARD_PRIVATE_KEY }}
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v8
         with:
