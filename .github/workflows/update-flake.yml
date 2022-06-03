@@ -18,8 +18,8 @@ jobs:
       - uses: tibdex/github-app-token@v1
         id: generate-token
         with:
-          app_id: ${{ secrets.FLAKE_STEWARD_APP_ID }}
-          private_key: ${{ secrets.FLAKE_STEWARD_KEY }}
+          app_id: ${{ secrets.STEWARD_APP_ID }}
+          private_key: ${{ secrets.STEWARD_KEY }}
       - name: Update flake.lock
         uses: DeterminateSystems/update-flake-lock@v8
         with:
