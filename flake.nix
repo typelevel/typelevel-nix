@@ -31,6 +31,7 @@
               name = "typelevel-lib-shell";
               typelevelShell.jdk.package = pkgs.jdk8_headless;
               typelevelShell.nodejs.enable = true;
+              typelevelShell.native.enable = true;
             };
             application = pkgs.devshell.mkShell {
               imports = [ typelevelShell ];
