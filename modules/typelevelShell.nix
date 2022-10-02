@@ -65,7 +65,7 @@ in
           pkgs.boehmgc
           pkgs.libunwind
           pkgs.clang
-          pkgs.zlib
+          pkgs.zlib.dev
         ];
 
         env = [
