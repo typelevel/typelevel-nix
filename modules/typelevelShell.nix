@@ -65,6 +65,7 @@ in
           pkgs.boehmgc
           pkgs.libunwind
           pkgs.clang
+          pkgs.zlib.out
           pkgs.zlib.dev
         ];
 
