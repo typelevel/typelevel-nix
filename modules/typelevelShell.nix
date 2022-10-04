@@ -53,12 +53,12 @@ in
             ${bold}[versions]${reset}
 
               Java - ${cfg.jdk.package.version}
-          '' + optionalString cfg.nodejs.enable "  Node - ${pkgs.nodejs.version}\n";
+          '' + optionalString cfg.nodejs.enable "  Node - ${pkgs.nodejs-16_x.version}\n";
 
         devshell.packages = [
           cfg.jdk.package
         ] ++ optionals cfg.nodejs.enable [
-          pkgs.nodejs
+          pkgs.nodejs-16_x
           pkgs.yarn
         ] ++ optionals cfg.native.enable [
           pkgs.stdenv
