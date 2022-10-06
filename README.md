@@ -116,7 +116,8 @@ The `typelevelShell` module can be imported into your `devshell.mkShell` configu
 Extra configuration in `typelevelShell`:
 
 * `typelevelShell.jdk.package`: the JDK package to use for `sbt` and the `$JAVA_HOME` environment.  Defaults to `pkgs.jdk17`.  If you're writing a library, you probably want `pkgs.jdk8`.
-* `typelevelShell.native.enable`: provide a clang environment for scala-native.  Defaults to `false`.
+* `typelevelShell.native.enable`: provide a clang environment for scala-native.  Defaults to `true` in the library shell, and `false` elsewhere.
+* `typelevelShell.native.libraries`: a list of split-output libraries to include (dev output) and link (lib output).  Defaults to `[ pkgs.zlib ]`.
 * `typelevelShell.nodejs.enable`: provide NodeJS and Yarn.  Defaults to `true` in the library shell, and `false` elsewhere.
 * `typelevelShell.sbtMicrosites.enable`: enables Jekyll support for sbt-microsites.  Defaults to `false`.
 * `typelevelShell.sbtMicrosites.siteDir`: directory with your `Gemfile`, `Gemfile.lock`, and `gemset.nix`.  Run [bundix] to create a gemset.nix, and every time you upgrade Jekyll.

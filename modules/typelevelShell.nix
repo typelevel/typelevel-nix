@@ -5,6 +5,8 @@ let
   cfg = config.typelevelShell;
 in
 {
+  imports = [ ./native.nix ];
+
   options.typelevelShell = {
     jdk = {
       package = mkOption {
@@ -12,8 +14,6 @@ in
         default = pkgs.jdk17;
       };
     };
-
-    native.enable = mkEnableOption "Provide scala-native environment";
 
     nodejs.enable = mkEnableOption "Provide nodejs and yarn";
 
@@ -60,23 +60,12 @@ in
         ] ++ optionals cfg.nodejs.enable [
           pkgs.nodejs-16_x
           pkgs.yarn
-        ] ++ optionals cfg.native.enable [
-          pkgs.stdenv
-          pkgs.boehmgc
-          pkgs.libunwind
-          pkgs.clang
-          pkgs.zlib
         ];
 
         env = [
           {
             name = "JAVA_HOME";
             value = "${cfg.jdk.package}";
-          }
-        ] ++ optionals cfg.native.enable [
-          {
-            name = "LLVM_BIN";
-            value = "${pkgs.clang}/bin";
           }
         ];
       };
