@@ -30,6 +30,10 @@ in
         name = "C_INCLUDE_PATH";
         prefix = "$DEVSHELL_DIR/include";
       }
+      {
+        name = "LLVM_BIN";
+        prefix = "${pkgs.clang}/bin";
+      }
     ];
   };
 }
