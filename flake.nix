@@ -53,5 +53,6 @@
     in
     {
       inherit (devshell) overlay;
+      inherit typelevelShell;
     } // flake-utils.lib.eachSystem systems forSystem;
 }
