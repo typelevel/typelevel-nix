@@ -5,7 +5,10 @@ let
   cfg = config.typelevelShell;
 in
 {
-  imports = [ ./native.nix ];
+  imports = [
+    ./native.nix
+    ./nodejs.nix
+  ];
 
   options.typelevelShell = {
     jdk = {
@@ -14,8 +17,6 @@ in
         default = pkgs.jdk17;
       };
     };
-
-    nodejs.enable = mkEnableOption "Provide nodejs and yarn";
 
     sbtMicrosites = {
       enable = mkEnableOption "Add support for sbt-microsites";
@@ -53,13 +54,10 @@ in
             ${bold}[versions]${reset}
 
               Java - ${cfg.jdk.package.version}
-          '' + optionalString cfg.nodejs.enable "  Node - ${pkgs.nodejs-16_x.version}\n";
+          '' + optionalString cfg.nodejs.enable "  Node - ${cfg.nodejs.package.version}\n";
 
         devshell.packages = [
           cfg.jdk.package
-        ] ++ optionals cfg.nodejs.enable [
-          pkgs.nodejs-16_x
-          pkgs.yarn
         ];
 
         env = [
