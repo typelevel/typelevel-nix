@@ -23,6 +23,10 @@ in
 
     env = [
       {
+        name = "LIBRARY_PATH";
+        prefix = "$DEVSHELL_DIR/lib";
+      }
+      {
         name = "LD_LIBRARY_PATH";
         prefix = "$DEVSHELL_DIR/lib";
       }
