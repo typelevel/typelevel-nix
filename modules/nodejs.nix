@@ -6,7 +6,7 @@ let
 in
 {
   options.typelevelShell.nodejs = {
-    enable = mkEnableOption "Provide nodejs and yarn";
+    enable = mkEnableOption "Provide nodejs";
 
     package = mkOption {
       type = types.package;
@@ -18,7 +18,6 @@ in
   config = mkIf cfg.enable {
     devshell.packages = [
       cfg.package
-      pkgs.yarn
     ];
   };
 }
