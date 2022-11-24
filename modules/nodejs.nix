@@ -10,7 +10,7 @@ in
 
     package = mkOption {
       type = types.package;
-      default = pkgs.nodejs-16_x;
+      default = pkgs.nodejs;
       description = "Package to use for nodejs";
     };
   };
