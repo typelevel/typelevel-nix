@@ -32,7 +32,7 @@ in
       }
       {
         name = "LLVM_BIN";
-        prefix = "${pkgs.clang}/bin";
+        value = "${pkgs.clang}/bin";
       }
     ];
   };
