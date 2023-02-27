@@ -52,7 +52,7 @@
         };
     in
     {
-      inherit (devshell) overlay;
       inherit typelevelShell;
+      overlay = devshell.overlays.default;
     } // flake-utils.lib.eachSystem systems forSystem;
 }
