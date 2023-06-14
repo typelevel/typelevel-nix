@@ -3,7 +3,8 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    devshell.url = "github:numtide/devshell";
+    devshell.url =
+      "github:numtide/devshell?rev=3e0e60ab37cd0bf7ab59888f5c32499d851edb47";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
@@ -25,10 +26,7 @@
         let
           pkgs = import nixpkgs {
             inherit system;
-            overlays = [
-              self.overlay
-              (import ./overlay.nix)
-            ];
+            overlays = [ self.overlay (import ./overlay.nix) ];
           };
 
           devShells = {
@@ -45,13 +43,11 @@
               typelevelShell.jdk.package = pkgs.jdk17_headless;
             };
           };
-        in
-        {
+        in {
           inherit devShells;
           checks = devShells;
         };
-    in
-    {
+    in {
       inherit typelevelShell;
       overlay = devshell.overlays.default;
     } // flake-utils.lib.eachSystem systems forSystem;
