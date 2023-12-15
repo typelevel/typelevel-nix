@@ -47,8 +47,10 @@
           };
         in
         {
-          inherit devShells;
-          checks = devShells;
+          checks = devShells // (import ./tests {
+            inherit pkgs;
+            inherit typelevelShell;
+          });
         };
     in
     {
