@@ -26,8 +26,7 @@
           pkgs = import nixpkgs {
             inherit system;
             overlays = [
-              self.overlay
-              (import ./overlay.nix)
+              self.overlays.default
             ];
           };
 
@@ -53,6 +52,6 @@
     in
     {
       inherit typelevelShell;
-      overlay = devshell.overlays.default;
+      overlays.default = devshell.overlays.default;
     } // flake-utils.lib.eachSystem systems forSystem;
 }

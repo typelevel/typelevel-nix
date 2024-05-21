@@ -93,7 +93,7 @@ The `typelevelShell` module can be imported into your `devshell.mkShell` configu
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ typelevel-nix.overlay ];
+          overlays = [ typelevel-nix.overlays.default ];
         };
       in
       {
