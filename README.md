@@ -93,7 +93,7 @@ The `typelevelShell` module can be imported into your `devshell.mkShell` configu
       let
         pkgs = import nixpkgs {
           inherit system;
-          overlays = [ typelevel-nix.overlay ];
+          overlays = [ typelevel-nix.overlays.default ];
         };
       in
       {
@@ -101,11 +101,11 @@ The `typelevelShell` module can be imported into your `devshell.mkShell` configu
           imports = [ typelevel-nix.typelevelShell ];
           name = "my-project-shell";
           typelevelShell = {
-		    jdk.package = pkgs.jdk8;
-			sbtMicrosites = {
-			  enable = true;
-			  siteDir = ./site;
-		    };
+            jdk.package = pkgs.jdk8;
+            sbtMicrosites = {
+              enable = true;
+              siteDir = ./site;
+            };
           };
         };
       }
@@ -129,7 +129,7 @@ Extra configuration in `typelevelShell`:
 
 Not yet, but flake.lock makes it reproducible.
 
-###	Can I use it with trusty old `nix-shell`?
+### Can I use it with trusty old `nix-shell`?
 
 Absolutely! The `shell.nix` provides a flakes-compatible shell that works with `nix-shell`. It selects the `application` shell by default, but you can be specific about it. E.g.
 

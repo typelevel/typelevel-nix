@@ -18,7 +18,7 @@ in
   config = mkIf cfg.enable {
     devshell.packages = [
       pkgs.clang
-      pkgs.llvmPackages.libcxxabi
+      pkgs.llvmPackages.libcxx
     ] ++ flatten (map (e: [ (getDev e) (getLib e) ]) cfg.libraries);
 
     env = [
