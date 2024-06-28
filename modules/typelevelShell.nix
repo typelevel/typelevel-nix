@@ -36,7 +36,7 @@ in
               jre = cfg.jdk.package;
             };
           }
-          { package = pkgs.scala-cli; }
+          { package = pkgs.scala-cli.override { jre = cfg.jdk.package; }; }
           { package = pkgs.sbt.override { jre = cfg.jdk.package; }; }
         ];
 
