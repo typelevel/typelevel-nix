@@ -21,6 +21,6 @@ jobs:
           app_id: 207424
           private_key: ${{ secrets.STEWARD_PRIVATE_KEY }}
       - name: Update flake.lock
-        uses: DeterminateSystems/update-flake-lock@v22
+        uses: DeterminateSystems/update-flake-lock@v23
         with:
           token: ${{ steps.generate-token.outputs.token }}
