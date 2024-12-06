@@ -3,6 +3,11 @@
 with lib;
 let
   cfg = config.typelevelShell;
+  defaultMinJDKVersion = minPkg: (
+    if (lib.versionAtLeast cfg.jdk.package.version minPkg.version)
+    then cfg.jdk.package
+    else minPkg
+  );
 in
 {
   imports = [
@@ -15,6 +20,18 @@ in
       package = mkOption {
         type = types.package;
         default = pkgs.jdk17;
+      };
+      metals = {
+        package = mkOption {
+          type = types.package;
+          default = defaultMinJDKVersion pkgs.jdk17;
+        };
+      };
+      scala-cli = {
+        package = mkOption {
+          type = types.package;
+          default = defaultMinJDKVersion pkgs.jdk17;
+        };
       };
     };
 
@@ -31,12 +48,8 @@ in
     let
       main = {
         commands = [
-          {
-            package = pkgs.metals.override {
-              jre = cfg.jdk.package;
-            };
-          }
-          { package = pkgs.scala-cli; }
+          { package = pkgs.metals.override { jre = cfg.jdk.metals.package; }; }
+          { package = pkgs.scala-cli.override { jre = cfg.jdk.scala-cli.package; }; }
           { package = pkgs.sbt.override { jre = cfg.jdk.package; }; }
         ];
 
@@ -46,6 +59,9 @@ in
             orange = "${esc}[38;5;202m";
             reset = "${esc}[0m";
             bold = "${esc}[1m";
+            differentVersion = name: pkg: if pkg != cfg.jdk.package then "  ${name} - ${pkg.version}\n" else "";
+            metalsJDKVersion = differentVersion "Metals Java" cfg.jdk.metals.package;
+            scalaCLIJDKVersion = differentVersion "Scala-cli Java" cfg.jdk.scala-cli.package;
           in
           ''
             ${orange}🔨 Welcome to ${config.devshell.name}${reset}
@@ -54,7 +70,9 @@ in
             ${bold}[versions]${reset}
 
               Java - ${cfg.jdk.package.version}
-          '' + optionalString cfg.nodejs.enable "  Node - ${cfg.nodejs.package.version}\n";
+          '' +
+          metalsJDKVersion + scalaCLIJDKVersion +
+          optionalString cfg.nodejs.enable "  Node - ${cfg.nodejs.package.version}\n";
 
         devshell.packages = [
           cfg.jdk.package
