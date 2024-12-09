@@ -56,5 +56,15 @@
     {
       inherit typelevelShell;
       overlays.default = devshell.overlays.default;
+      templates = {
+        library = {
+          path = ./library;
+          description = "A simple nix flake with the oldest LTS JDK supported set as the default.";
+        };
+        application = {
+          path = ./application;
+          description = "A simple nix flake with a more recent supported JDK set as the default.";
+        };
+      };
     } // flake-utils.lib.eachSystem systems forSystem;
 }

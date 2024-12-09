@@ -113,6 +113,17 @@ The `typelevelShell` module can be imported into your `devshell.mkShell` configu
 }
 ```
 
+if you don't currently have a `flake.nix` you can create one quickly with the following command.
+
+```nix
+# For a library (defaults to jdk8)
+nix flake init -t github:typelevel/typelevel-nix#library
+# For an application service (defaults to jdk23)
+nix flake init -t github:typelevel/typelevel-nix#application
+```
+
+Don't forget to tweak the `devShell.name` property and customize to taste.
+
 Extra configuration in `typelevelShell`:
 
 * `typelevelShell.jdk.package`: the JDK package to use for `sbt` and the `$JAVA_HOME` environment.  Defaults to `pkgs.jdk17`.  If you're writing a library, you probably want `pkgs.jdk8`.
