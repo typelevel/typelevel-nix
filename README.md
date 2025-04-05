@@ -171,10 +171,6 @@ typelevelShell = {
 }
 ```
 
-### Is there a binary cache?
-
-Yes.  We are publishing to [typelevel.cachix.org] for Linux and MacOS, though the heavy things are mostly in nixpkgs.
-
 [sbt]: https://www.scala-sbt.org/
 [Scala CLR]: https://www.scala-lang.org/old/sites/default/files/pdfs/PreviewScalaNET.pdf
 [Scala.js]: https://www.scala-js.org/
@@ -186,4 +182,3 @@ Yes.  We are publishing to [typelevel.cachix.org] for Linux and MacOS, though th
 [direnv]: https://direnv.net/
 [Laika]: https://planet42.github.io/Laika/
 [bundix]: https://github.com/nix-community/bundix
-[typelevel.cachix.org]: https://app.cachix.org/cache/typelevel#pull
