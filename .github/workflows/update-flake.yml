@@ -11,10 +11,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
       - name: Install Nix
-        uses: cachix/install-nix-action@v31
-        with:
-          extra_nix_config: |
-            access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+        uses: samueldr/lix-gha-installer-action@v1
       - uses: tibdex/github-app-token@v2
         id: generate-token
         with:
