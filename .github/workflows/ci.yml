@@ -17,8 +17,8 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: "Install Nix️"
-        uses: cachix/install-nix-action@v31
+      - name: "Install Lix️"
+        uses: samueldr/lix-gha-installer-action@v2025-10-27
 
       - name: "Run checks"
         run: nix flake check
