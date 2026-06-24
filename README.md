@@ -182,3 +182,14 @@ typelevelShell = {
 [direnv]: https://direnv.net/
 [Laika]: https://planet42.github.io/Laika/
 [bundix]: https://github.com/nix-community/bundix
+
+### I get a `'error: experimental Nix feature 'nix-command' is disabled; add '--extra-experimental-features nix-command' to enable it'`
+
+Because typelevel-nix uses the [Nix command], which is an experimental feature.  You can enable it by adding `--extra-experimental-features nix-command` to your `nix develop` command.
+
+```shell
+nix --experimental-features 'nix-command flakes' develop github:typelevel/typelevel-nix#library
+```
+
+But if you don't want to type all that, there are different places on your system you can [set it and forget it](https://wiki.nixos.org/wiki/Flakes#Setup).
+
