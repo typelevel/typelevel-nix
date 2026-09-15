@@ -50,7 +50,7 @@ in
         commands = [
           { package = pkgs.metals.override { jre = cfg.jdk.metals.package; }; }
           { package = pkgs.scala-cli.override { jre = cfg.jdk.scala-cli.package; }; }
-          { package = pkgs.sbt.override { jre = cfg.jdk.package; }; }
+          { package = pkgs.sbt1.override { jre = cfg.jdk.package; }; }
         ];
 
         devshell.motd =
