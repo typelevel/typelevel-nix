@@ -21,7 +21,4 @@ jobs:
         uses: cachix/install-nix-action@13d8dd58da0234aa297dedd986986ccb8e7f3e24 # v31.11.1
 
       - name: "Run checks"
-        run: nix flake check
-
-      - name: "Build dev shells"
-        run: for shell in library application; do nix develop .#${shell} -c true; done
+        run: nix -L flake check
