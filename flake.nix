@@ -47,15 +47,23 @@
               typelevelShell.jdk.package = pkgs.jdk17_headless;
             };
           };
+
+          sbt1 = pkgs.callPackage ./pkgs/sbt1.nix { };
         in
         {
           inherit devShells;
           checks = devShells;
+          packages = {
+            inherit sbt1;
+          };
         };
     in
     {
       inherit typelevelShell;
-      overlays.default = devshell.overlays.default;
+      overlays.default = final: prev:
+        (devshell.overlays.default final prev) // {
+          sbt1 = self.packages.${prev.stdenv.hostPlatform.system}.sbt1;
+        };
       templates = {
         library = {
           path = ./library;
